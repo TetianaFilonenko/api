@@ -73,13 +73,18 @@ PaperSearchApi::Application.routes.draw do
     resources :replications, :only => [:show, :index]
     resources :replication_of, :only => [:show, :index]
     resources :findings, :only => [:show, :index]
+    resources :comments, :only => [:show, :index]
   end
 
   resources :articles do
+    collection do 
+      get 'recent'
+    end
     resources :studies do
       resources :replications
       resources :replication_of
       resources :findings
+      resources :comments
     end
   end
 
